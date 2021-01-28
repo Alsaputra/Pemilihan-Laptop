@@ -1,13 +1,7 @@
-<footer class="footer mt-auto">
-    <div class="copyright bg-white">
-        <p style="text-align: center;">
-            &copy; <span id="copy-year">2020</span> Copyright CARI LAPTOP
-            
-        </p>
+<footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Cari laptop 2021</div>
+        </div>
     </div>
-    <script>
-        var d = new Date();
-        var year = d.getFullYear();
-        document.getElementById("copy-year").innerHTML = year;
-    </script>
 </footer>

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Maatwebsite\Excel\Facades\Excel;
-class PackageController extends Controller
+class AlternatifController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,12 +33,8 @@ class PackageController extends Controller
             )
             ->get();
         $data['alternatif'] = $alter;
-        return view("admin.package.index", $data);
+        return view("admin.alternatif.index", $data);
     }
-    public function export_excel()
-	{
-		return Excel::download(new PackageExport, 'package.xlsx');
-	}
 
     /**
      * Show the form for creating a new resource.
@@ -110,7 +106,7 @@ class PackageController extends Controller
         )->where('Id_Kriteria', '7')
         ->get();
         $data['subvga'] = $vga;
-        return view('admin.package.create', $data);
+        return view('admin.alternatif.create', $data);
     }
 
     /**
@@ -133,7 +129,7 @@ class PackageController extends Controller
                 'monitor_lp' => $request->get('monitor'),
                 'vga_lp' => $request->get('vga')
             ]);
-            return redirect('/package');
+            return redirect('/alternatif');
     }
 
     /**
@@ -160,7 +156,7 @@ class PackageController extends Controller
         )
         ->where('alternatif.id_lp', $id)
         ->first();
-        return view('admin.package.detail_package', ['detail' => $detail]);
+        return view('admin.alternatif.detail_alternatif', ['detail' => $detail]);
     }
 
     /**
@@ -250,7 +246,7 @@ class PackageController extends Controller
         )
         ->where('alternatif.id_lp', $id)
         ->first();
-        return view('admin.package.edit', ['edit' => $edit], $data);
+        return view('admin.alternatif.edit', ['edit' => $edit], $data);
     }
 
     /**
@@ -277,7 +273,7 @@ class PackageController extends Controller
             ]);
 
 
-        return redirect('/package');
+        return redirect('/alternatif');
     }
 
     /**
@@ -290,6 +286,6 @@ class PackageController extends Controller
     {
         $delete = package::findOrFail($id);
         $delete->delete();
-        return redirect()->route('package.index');
+        return redirect()->route('alternatif.index');
     }
 }

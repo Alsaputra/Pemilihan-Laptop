@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\package;
 use Illuminate\Support\Facades\DB;
 
-class PesanController extends Controller
+class SubController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class PesanController extends Controller
             )
             ->get();
         $data['subkriteria'] = $sub;
-        return view("admin.contact.index", $data);
+        return view("admin.sub.index", $data);
     }
 
     /**
@@ -43,7 +43,7 @@ class PesanController extends Controller
                 'kriteria.atribut'
             )->get();
         $data['kriteria'] = $kriteria;
-        return view('admin.contact.create', $data);
+        return view('admin.sub.create', $data);
     }
 
     /**
@@ -63,7 +63,7 @@ class PesanController extends Controller
                 'bobot' => $request->get('bobot'),
                 'keterangan' => $request->get('keterangan')
             ]);
-        return redirect('/kritik');
+        return redirect('/sub');
     }
 
     /**
@@ -85,7 +85,7 @@ class PesanController extends Controller
             )
             ->where('subkriteria.id_sub', $id)
             ->first();
-        return view("admin.contact.detail", ['detail' => $detail]);
+        return view("admin.sub.detail", ['detail' => $detail]);
     }
 
     /**
@@ -114,7 +114,7 @@ class PesanController extends Controller
             )
             ->where('subkriteria.id_sub', $id)
             ->first();
-        return view('admin.contact.edit', ['edit' => $edit], $data2);
+        return view('admin.sub.edit', ['edit' => $edit], $data2);
     }
 
     /**
@@ -135,7 +135,7 @@ class PesanController extends Controller
                 'bobot' => $request->get('bobot'),
                 'keterangan' => $request->get('keterangan')
             ]);
-        return redirect('/kritik');
+        return redirect('/sub');
     }
 
     /**
@@ -150,6 +150,6 @@ class PesanController extends Controller
             ->select('subkriteria.*')
             ->where('subkriteria.id_sub', $id);
         $delete->delete();
-        return redirect()->route('contact.index');
+        return redirect()->route('sub.index');
     }
 }

@@ -8,7 +8,7 @@ use App\Exports\UserExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
-class UserController extends Controller
+class NormalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,7 +33,7 @@ class UserController extends Controller
             )
             ->get();
         $data['normal'] = $nor;
-        return view("admin.user.index", $data);
+        return view("admin.normal.index", $data);
     }
     public function export_excel()
 	{
@@ -118,7 +118,7 @@ class UserController extends Controller
         ->get();
         $data['subvga'] = $vga;
 
-        return view('admin.user.create', $data);
+        return view('admin.normal.create', $data);
     }
 
     /**
@@ -141,7 +141,7 @@ class UserController extends Controller
                 'monitor' => $request->get('monitor'),
                 'vga' => $request->get('vga')
             ]);
-            return redirect('/user');
+            return redirect('/normal');
     }
 
     /**
@@ -167,7 +167,7 @@ class UserController extends Controller
             )
             ->where('normal.id_normal', $id)
             ->first();
-        return view("admin.user.detail", ['detail' => $detail]);
+        return view("admin.normal.detail", ['detail' => $detail]);
     }
 
     /**
@@ -263,7 +263,7 @@ class UserController extends Controller
         )
         ->where( 'normal.id_normal', $id)
         ->first();
-    return view('admin.user.edit', ['edit' => $edit], $data);
+    return view('admin.normal.edit', ['edit' => $edit], $data);
     }
 
     /**
@@ -294,7 +294,7 @@ class UserController extends Controller
                 'monitor' => $request->get('monitor'),
                 'vga' => $request->get('vga')
             ]);
-            return redirect('/user');
+            return redirect('/normal');
     }
 
     /**
@@ -319,6 +319,6 @@ class UserController extends Controller
             )
             ->where('normal.id_normal', $id);
         $delete->delete();
-        return redirect()->route('user.index');
+        return redirect()->route('normal.index');
     }
 }

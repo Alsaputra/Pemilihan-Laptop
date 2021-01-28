@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Maatwebsite\Excel\Facades\Excel;
 
-class OrderController extends Controller
+class KriteriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,11 +27,7 @@ class OrderController extends Controller
             )
             ->get();
         $data['kriteria'] = $krit;
-        return view("admin.order.index", $data);
-    }
-    public function export_excel()
-    {
-        return Excel::download(new OrderExport, 'order.xlsx');
+        return view("admin.kriteria.index", $data);
     }
     /**
      * Show the form for creating a new resource.
@@ -58,7 +54,7 @@ class OrderController extends Controller
     }
     public function create()
     {
-        return view('admin.order.create');
+        return view('admin.kriteria.create');
     }
 
     /**
@@ -74,7 +70,7 @@ class OrderController extends Controller
                 'kategori' => $request->get('kategori'),
                 'atribut' => $request->get('atribut')
             ]);
-        return redirect('/order');
+        return redirect('/kriteria');
     }
 
     /**
@@ -95,7 +91,7 @@ class OrderController extends Controller
             )
             ->where('kriteria.id_kriteria', $id)
             ->first();
-        return view('admin.order.detail_order', ['detail' => $detail]);
+        return view('admin.kriteria.detail_kriteria', ['detail' => $detail]);
     }
 
     /**
@@ -114,7 +110,7 @@ class OrderController extends Controller
             )
             ->where('kriteria.id_kriteria', $id)
             ->first();
-        return view('admin.order.edit', ['edit' => $edit]);
+        return view('admin.kriteria.edit', ['edit' => $edit]);
     }
 
     /**
@@ -146,7 +142,7 @@ class OrderController extends Controller
                 'kriteria.atribut' => $request->get('atribut')
             ]);
 
-        return redirect('/order');
+        return redirect('/kriteria');
     }
 
     /**
@@ -166,6 +162,6 @@ class OrderController extends Controller
             ->where('kriteria.id_kriteria', $id);
 
         $delete->delete();
-        return redirect()->route('order.index');
+        return redirect()->route('kriteria.index');
     }
 }
